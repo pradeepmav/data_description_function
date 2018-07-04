@@ -1,5 +1,5 @@
-require(prettyR)
-require(pryr)
+require("prettyR")
+require("pryr")
 data_description <- function(datasetname) {
 varbclass <- as.data.frame(sapply(get(datasetname), class))
 if(nrow(varbclass)==2) { varbclass <- as.data.frame(t(varbclass[-2,])) } else {varbclass <- varbclass}
