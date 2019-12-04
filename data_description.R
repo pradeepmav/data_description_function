@@ -23,7 +23,7 @@ data_description <- function(datasetname) {
         as.data.frame(sapply(get(datasetname), median, na.rm = T))
     try(varbmode <-
         as.data.frame(sapply(get(datasetname), prettyR::Mode, na.rm = T)))
-    if (file.exists("varmode")) {
+    if (file.exists("varbmode")) {
         varbsumfile <-
             cbind(
                 varbclass,
