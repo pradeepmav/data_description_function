@@ -21,9 +21,8 @@ data_description <- function(datasetname) {
     varbmean <- as.data.frame(sapply(get(datasetname), mean, na.rm = T))
     varbmedian <-
         as.data.frame(sapply(get(datasetname), median, na.rm = T))
-    try(varbmode <-
-        as.data.frame(sapply(get(datasetname), prettyR::Mode, na.rm = T)))
-    if (file.exists("varbmode")) {
+    varbmode <- try(as.data.frame(sapply(get(datasetname), prettyR::Mode, na.rm = T)))
+    if (!inherits(varbmode, "try-error"))  {
         varbsumfile <-
             cbind(
                 varbclass,
@@ -49,7 +48,7 @@ data_description <- function(datasetname) {
                 varbmedian
             )
     }
-    if (file.exists("varbmode")) {
+    if (!inherits(varbmode, "try-error")) {
         names(varbsumfile) <-
             c(
                 "Type",
